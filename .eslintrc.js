@@ -25,5 +25,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'newline-per-chained-call': 'off',
     'no-console': 'off',
+    'max-len': 'off',
   },
 };
