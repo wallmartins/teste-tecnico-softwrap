@@ -26,5 +26,7 @@ module.exports = {
     'newline-per-chained-call': 'off',
     'no-console': 'off',
     'max-len': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
