@@ -15,10 +15,9 @@ const RegisterUser = () => {
     });
   };
 
-  console.log(formData);
-
   function formSubmit(event) {
     event.preventDefault();
+    event.target.reset();
     createUser(formData);
   }
 
