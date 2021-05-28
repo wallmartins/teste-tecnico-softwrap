@@ -1,8 +1,26 @@
-import React from 'react';
+import { useContext, useState } from 'react';
 import { RegisterContext, withRegisterContext } from '../../Context/RegisterStorage';
+import { createUser } from '../../services/firebase/User';
 
 const RegisterUser = () => {
-  const { states, loading, error } = React.useContext(RegisterContext);
+  const { states, loading, error } = useContext(RegisterContext);
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+
+      // Trimming any whitespace
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  console.log(formData);
+
+  function formSubmit(event) {
+    event.preventDefault();
+    createUser(formData);
+  }
 
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
@@ -18,7 +36,7 @@ const RegisterUser = () => {
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
+          <form action="#" onSubmit={formSubmit} method="POST">
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
@@ -32,6 +50,7 @@ const RegisterUser = () => {
                       id="name"
                       autoComplete="given-name"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -40,11 +59,12 @@ const RegisterUser = () => {
                       Idade
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       name="age"
                       id="age"
                       autoComplete="age"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -54,10 +74,13 @@ const RegisterUser = () => {
                     </label>
                     <select
                       id="maritalStatus"
-                      name="maritalStatus"
+                      name="marital_status"
                       autoComplete="maritalStatus"
                       className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      onChange={handleChange}
+                      placeholder="Selecione o seu estado civil"
                     >
+                      <option>Selecione o seu estado civil</option>
                       <option>Solteiro(a)</option>
                       <option>Casado(a)</option>
                       <option>Separado(a)</option>
@@ -67,15 +90,16 @@ const RegisterUser = () => {
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="email_address" className="block text-sm font-medium text-gray-700">
-                      Email address
+                    <label htmlFor="document" className="block text-sm font-medium text-gray-700">
+                      CPF
                     </label>
                     <input
                       type="text"
-                      name="email_address"
-                      id="email_address"
-                      autoComplete="email"
+                      name="document"
+                      id="document"
+                      autoComplete="document"
                       className="mt-1 w-full focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -88,6 +112,7 @@ const RegisterUser = () => {
                       name="city"
                       id="city"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -100,7 +125,9 @@ const RegisterUser = () => {
                       name="state"
                       autoComplete="state"
                       className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      onChange={handleChange}
                     >
+                      <option>Selecione o seu estado</option>
                       {states.map((state) => (
                         <option key={state}>{state}</option>
                       ))}
