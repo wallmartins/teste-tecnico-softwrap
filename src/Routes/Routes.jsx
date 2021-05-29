@@ -17,7 +17,7 @@ const Routes = () => (
         <Breadcrumb title="Novo Cadastro" />
         <RegisterUser />
       </Route>
-      <Route path="/edit">
+      <Route path="/edit/:id">
         <Breadcrumb title="Editar Cadastro" />
         <EditUser />
       </Route>
