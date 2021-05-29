@@ -3,7 +3,7 @@ import firebase from '../Firebase';
 
 export const getMaritalStatusCollection = () => firebase.firestore().collection('marital_status');
 
-export const listAllStates = async () => {
+export const listAllMaritalStatus = async () => {
   const response = await getMaritalStatusCollection().get();
   return response.docs.map((document) => getDocumentData(document));
 };
