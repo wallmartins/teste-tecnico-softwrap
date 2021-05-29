@@ -4,6 +4,7 @@ import { createUser } from '../../services/firebase/User';
 
 const RegisterUser = () => {
   const { states, loading, error } = useContext(RegisterContext);
+  const { maritalStatus } = useContext(RegisterContext);
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
@@ -77,14 +78,11 @@ const RegisterUser = () => {
                       autoComplete="maritalStatus"
                       className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       onChange={handleChange}
-                      placeholder="Selecione o seu estado civil"
                     >
                       <option>Selecione o seu estado civil</option>
-                      <option>Solteiro(a)</option>
-                      <option>Casado(a)</option>
-                      <option>Separado(a)</option>
-                      <option>Divorciado(a)</option>
-                      <option>Viuvo(a)</option>
+                      {maritalStatus.map((stats) => (
+                        <option key={stats}>{stats}</option>
+                      ))}
                     </select>
                   </div>
 
