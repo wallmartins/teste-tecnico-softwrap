@@ -46,12 +46,12 @@ const EditUser = () => {
     <div className="container mx-auto lg:my-52">
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="lg:px-8 md:col-span-1">
-          <div className="px-4 sm:px-0 pt-5">
+          <div className="px-4 sm:px-0 pt-5 lg:pt-0">
             <h3 className="text-lg font-bold leading-6 text-gray-900">Informações Pessoais</h3>
             <p className="mt-1 text-sm text-gray-500">Altere aqui as informações da pessoa.</p>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2 pb-5 lg:pb-0">
+        <div className="mt-5 md:mt-0 md:col-span-2 pb-7 lg:pb-0">
           <form action="#" onSubmit={editFormSubmit} method="POST">
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
