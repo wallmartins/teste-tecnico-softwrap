@@ -1,24 +1,21 @@
 import PropTypes from 'prop-types';
 
-const ModalForm = ({ errors, formSent }) => {
+const ModalForm = ({ errors, formSent, setShowModal }) => {
   if (!errors) return null;
+  const stringsRegister = ['realizado', 'alterado', 'excluído'];
+  const stringExist = stringsRegister.find((state) => state === formSent);
 
   return (
     <>
-      {!formSent ? (
-        <div
-          className={`${
-            errors.length === 0
-              ? 'hidden'
-              : 'fixed lg:absolute w-11/12 lg:w-2/5 lg:h-10 bottom-5 left-0 right-0 ml-auto mr-auto lg:mr-5 lg:top-44'
-          }`}
-        >
-          <nav className="px-4 py-4 lg:px-8 lg:py-4 bg-red-300 border-2 border-solid rounded border-red-800 border-opacity-50 text-sm">
+      {!stringExist ? (
+        <div className="fixed lg:absolute w-11/12 lg:w-2/5 lg:h-10 bottom-5 left-0 right-0 ml-auto mr-auto lg:mr-5 lg:top-44 text-sm">
+          <nav className="px-4 py-4 lg:px-8 lg:py-4 bg-red-50 border border-solid rounded border-red-800 border-opacity-50 text-sm">
             <button
               type="button"
               className="absolute right-5 p-2 h-auto focus:outline-none"
               aria-controls="modal"
               aria-expanded="false"
+              onClick={() => setShowModal(false)}
             >
               <svg
                 className="hidden lg:block h-5 w-5"
@@ -62,12 +59,13 @@ const ModalForm = ({ errors, formSent }) => {
         </div>
       ) : (
         <div className="fixed lg:absolute w-11/12 lg:w-2/5 lg:h-10 bottom-5 left-0 right-0 ml-auto mr-auto lg:mr-5 lg:top-44">
-          <span className="flex items-center px-4 py-4 lg:px-8 lg:py-4 bg-green-50 border-2 border-solid rounded border-green-800 border-opacity-50 text-sm text-green-800">
+          <span className="flex items-center px-4 py-4 lg:px-8 lg:py-4 bg-green-50 border border-solid rounded border-green-800 border-opacity-50 text-sm text-green-800">
             <button
               type="button"
               className="absolute right-1 mb-auto p-2 h-auto focus:outline-none"
               aria-controls="modal"
               aria-expanded="false"
+              onClick={() => setShowModal(false)}
             >
               <svg
                 className="block h-5 w-5"
@@ -107,4 +105,5 @@ export default ModalForm;
 ModalForm.propTypes = {
   errors: PropTypes.array.isRequired,
   formSent: PropTypes.string.isRequired,
+  setShowModal: PropTypes.func.isRequired,
 };
