@@ -28,5 +28,11 @@ module.exports = {
     'max-len': 'off',
     'implicit-arrow-linebreak': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'object-curly-newline': 'off',
+    'react/jsx-indent': 'off',
+    'no-lone-blocks': 'off',
+    'no-unused-expressions': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/forbid-prop-types': 'off',
   },
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { listAllStates } from '../services/firebase/States';
-import { listAllUsers } from '../services/firebase/User';
-import { listAllMaritalStatus } from '../services/firebase/MaritalStatus';
+import { listAllStates } from '../Services/Firebase/States';
+import { listAllUsers } from '../Services/Firebase/User';
+import { listAllMaritalStatus } from '../Services/Firebase/MaritalStatus';
 
 export const RegisterContext = React.createContext();
 
