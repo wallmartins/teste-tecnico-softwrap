@@ -71,7 +71,9 @@ const RegisterUser = () => {
                         name="name"
                         id="name"
                         autoComplete="given-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.name && 'border border-red-300'
+                        }`}
                         {...register('name', { required: true })}
                       />
                     </div>
@@ -85,7 +87,9 @@ const RegisterUser = () => {
                         name="age"
                         id="age"
                         autoComplete="age"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.age && 'border border-red-300'
+                        }`}
                         {...register('age', { required: true })}
                       />
                     </div>
@@ -98,7 +102,9 @@ const RegisterUser = () => {
                         id="maritalStatus"
                         name="marital_status"
                         autoComplete="maritalStatus"
-                        className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.marital_status && 'border border-red-300'
+                        }`}
                         {...register('marital_status', { required: true })}
                       >
                         <option hidden value="">
@@ -119,7 +125,9 @@ const RegisterUser = () => {
                         name="document"
                         id="document"
                         autoComplete="document"
-                        className="mt-1 w-full focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.document && 'border border-red-300'
+                        }`}
                         {...register('document', { required: true })}
                       />
                       {errors.document && <h1>Error</h1>}
@@ -133,7 +141,9 @@ const RegisterUser = () => {
                         type="text"
                         name="city"
                         id="city"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.city && 'border border-red-300'
+                        }`}
                         {...register('city', { required: true })}
                       />
                     </div>
@@ -146,7 +156,9 @@ const RegisterUser = () => {
                         id="state"
                         name="state"
                         autoComplete="state"
-                        className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className={`mt-1 block w-full shadow-sm sm:text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ${
+                          errors.state && 'border border-red-300'
+                        }`}
                         {...register('state', { required: true })}
                       >
                         <option hidden value="">
