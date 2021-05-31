@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegisterContext, withRegisterContext } from '../../Context/RegisterStorage';
@@ -10,6 +10,7 @@ import { createUser } from '../../Services/Firebase/User';
 const RegisterUser = () => {
   const { states, users, maritalStatus, loading, error } = useContext(RegisterContext);
   const [formSent, setFormSent] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,6 +21,16 @@ const RegisterUser = () => {
   });
 
   const errorsArray = Object.values(errors);
+
+  const showModalIfHasError = () => {
+    if (errorsArray.length !== 0 && showModal) {
+      setShowModal(true);
+    }
+  };
+
+  useEffect(() => {
+    showModalIfHasError();
+  }, [errorsArray]);
 
   const submitedForm = (data, event) => {
     const equalCPF = users.filter((user) => user.document === data.document);
@@ -37,7 +48,7 @@ const RegisterUser = () => {
 
   return (
     <>
-      <ModalForm errors={errorsArray} formSent={formSent} />
+      {showModal ? <ModalForm errors={errorsArray} formSent={formSent} setShowModal={setShowModal} /> : null}
       <div className="container mx-auto lg:my-52">
         <div className="lg:grid lg:grid-cols-3 lg:gap-6">
           <div className="lg:px-8 lg:col-span-1">
@@ -111,6 +122,7 @@ const RegisterUser = () => {
                         className="mt-1 w-full focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md"
                         {...register('document', { required: true })}
                       />
+                      {errors.document && <h1>Error</h1>}
                     </div>
 
                     <div className="col-span-3">
@@ -151,6 +163,7 @@ const RegisterUser = () => {
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={() => setShowModal(true)}
                   >
                     Cadastrar
                   </button>

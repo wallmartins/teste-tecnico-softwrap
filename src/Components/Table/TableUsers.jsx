@@ -82,9 +82,9 @@ const TableUsers = ({ users }) => {
       </table>
       <div className="flex w-full justify-between items-center">
         <span className="pl-6 text-sm">
-          Mostrando {pageNumber >= 1 ? pageNumber * usersPerPage : '1'} até{' '}
-          {pageNumber <= 1 || users.length < pageNumber * usersPerPage ? (pageNumber + 1) * usersPerPage : users.length}{' '}
-          de {users.length} resultados
+          Mostrando {pageNumber >= 1 ? pageNumber * usersPerPage + 1 : '1'} até{' '}
+          {pagesVisited + usersPerPage <= users.length ? pagesVisited + usersPerPage : users.length} de {users.length}{' '}
+          resultados
         </span>
         <ReactPaginate
           previousLabel="Anterior"

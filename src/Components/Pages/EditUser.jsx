@@ -10,6 +10,7 @@ const EditUser = () => {
   const [userData, setUserData] = useState([]);
   const [formData, setFormData] = useState({});
   const [formSent, setFormSent] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
 
   const handleUserDataChange = (e) => {
@@ -49,20 +50,22 @@ const EditUser = () => {
 
   return (
     <>
-      <ModalForm errors={[]} formSent={formSent} />
+      {showModal ? (
+        <ModalForm showModal={showModal} setShowModal={setShowModal} errors={[]} formSent={formSent} />
+      ) : null}
       <div className="container mx-auto lg:my-52">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="lg:px-8 md:col-span-1">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-6">
+          <div className="lg:px-8 lg:col-span-1">
             <div className="px-4 sm:px-0 pt-5 lg:pt-0">
               <h3 className="text-lg font-bold leading-6 text-gray-900">Informações Pessoais</h3>
               <p className="mt-1 text-sm text-gray-500">Altere aqui as informações da pessoa.</p>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2 pb-7 lg:pb-0">
+          <div className="mt-5 lg:mt-0 lg:col-span-2 pb-7 lg:pb-0">
             <form action="#" onSubmit={editFormSubmit} method="POST">
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
-                  <div className="grid grid-cols-6 gap-6">
+                  <div className="lg:grid lg:grid-cols-6 gap-6">
                     <div className="col-span-4">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                         Nome
@@ -79,7 +82,7 @@ const EditUser = () => {
                     </div>
 
                     <div className="col-span-2">
-                      <label htmlFor="age" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="age" className="block text-sm font-medium text-gray-700 pt-2 lg:pt-0">
                         Idade
                       </label>
                       <input
@@ -94,7 +97,7 @@ const EditUser = () => {
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="maritalStatus" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="maritalStatus" className="block text-sm font-medium text-gray-700 pt-2 lg:pt-0">
                         Estado Civil
                       </label>
                       <select
@@ -118,7 +121,7 @@ const EditUser = () => {
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="document" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="document" className="block text-sm font-medium text-gray-700 pt-2 lg:pt-0">
                         CPF
                       </label>
                       <input
@@ -133,7 +136,7 @@ const EditUser = () => {
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="city" className="block text-sm font-medium text-gray-700 pt-2 lg:pt-0">
                         Cidade
                       </label>
                       <input
@@ -147,7 +150,7 @@ const EditUser = () => {
                     </div>
 
                     <div className="col-span-3">
-                      <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="state" className="block text-sm font-medium text-gray-700 pt-2 lg:pt-0">
                         Estado
                       </label>
                       <select
@@ -182,6 +185,7 @@ const EditUser = () => {
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={() => setShowModal(true)}
                   >
                     Cadastrar
                   </button>
