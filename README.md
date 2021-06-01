@@ -2,6 +2,10 @@
 
 Esse é um projeto desenvolvido como teste técnico para a empresa Softwrap, criado com ReactJS and Tailwind.
 
+## Deploy
+
+Clique aqui para acessar o deploy do projeto: [Teste técnico softwrap](https://teste-tecnico-softwrap.vercel.app/)
+
 ## Sumário
 
 - [Como iniciar](#como-iniciar)
